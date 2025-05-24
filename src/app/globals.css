@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-gradient-global {
+  @apply bg-gradient-to-br from-blue-400 via-red-200 to-blue-300;
+}
