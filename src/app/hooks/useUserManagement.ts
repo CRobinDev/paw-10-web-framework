@@ -38,11 +38,7 @@ export default function useUserManagement() {
   }, [])
 
   useEffect(() => {
-    if (loggedIn) {
-      fetchUsers()
-    } else {
-      setUsers([])
-    }
+    fetchUsers()
   }, [loggedIn])
 
   const fetchUsers = () => {

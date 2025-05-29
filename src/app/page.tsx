@@ -4,7 +4,6 @@ import UserList from "../components/userList"
 import useAuth from "./hooks/useAuth"
 import useUserManagement from "./hooks/useUserManagement"
 
-
 export default function Home() {
   const { loggedIn, logout } = useAuth()
   const { users, setShowCreateModal, userManagementProps } = useUserManagement()
@@ -13,7 +12,9 @@ export default function Home() {
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-400 via-red-200 to-blue-300 pt-10">
       {/* SVG Illustration */}
       <img src="/cat.svg" alt="Logo" className="w-32 h-32 mb-6 drop-shadow-lg animate-fade-in" />
-      <h1 className="pb-2 text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-pink-500 to-emerald-500 bg-clip-text text-transparent">Selamat Datang di Aplikasi Kami</h1>
+      <h1 className="pb-2 text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-pink-500 to-emerald-500 bg-clip-text text-transparent">
+        Selamat Datang di Aplikasi Kami
+      </h1>
       <p className="mb-8 text-gray-600 text-center max-w-xl">
         Aplikasi ini dibuat dengan Web Framework Next.js, Prisma sebagai ORM, dan Tailwind CSS untuk styling.
       </p>
@@ -53,7 +54,8 @@ export default function Home() {
         </div>
       )}
 
-      {loggedIn && <UserList users={users} {...userManagementProps} />}
+      {/* Selalu tampilkan UserList, kirim loggedIn sebagai prop */}
+      <UserList users={users} {...userManagementProps} loggedIn={loggedIn} />
     </div>
   )
 }

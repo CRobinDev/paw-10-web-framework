@@ -10,6 +10,7 @@ import ModalCreateUser from "./createUser"
 interface UserListProps {
   users: User[]
   showEditModal: boolean
+  loggedIn: boolean
   editUser: User | null
   editName: string
   editLoading: boolean
@@ -42,6 +43,7 @@ interface UserListProps {
 
 export default function UserList({
   users,
+  loggedIn,
   showEditModal,
   editUser,
   editName,
@@ -89,18 +91,21 @@ export default function UserList({
                 <span className="text-gray-500 block truncate">{user.email}</span>
               </div>
               <div className="flex gap-4">
-                <button onClick={() => openEditModal(user)} className="text-blue-500 hover:underline">
-                  Edit
-                </button>
-                <button onClick={() => openDeleteModal(user)} className="text-red-500 hover:underline">
-                  Delete
-                </button>
+                {loggedIn && (
+                  <>
+                    <button onClick={() => openEditModal(user)} className="text-blue-500 hover:underline">
+                      Edit
+                    </button>
+                    <button onClick={() => openDeleteModal(user)} className="text-red-500 hover:underline">
+                      Delete
+                    </button>
+                  </>
+                )}
               </div>
             </li>
           ))}
         </ul>
       </div>
-
       {/* Modal Edit */}
       <ModalEditUser
         show={showEditModal && !!editUser}
